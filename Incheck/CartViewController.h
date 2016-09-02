@@ -10,5 +10,10 @@
 
 @interface CartViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *cartTableView;
+@property (nonatomic, strong) NSMutableArray *cartItemsArray;
+@property (nonatomic, assign) CGFloat totalAmount;
+@property (nonatomic, assign) NSUInteger totalItems;
+@property (weak, nonatomic) IBOutlet UILabel *totalItemsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
 
 @end

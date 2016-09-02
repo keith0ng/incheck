@@ -7,10 +7,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScannedProductViewController">
             <connections>
+                <outlet property="addToCartButton" destination="Hq6-ab-T82" id="Sg3-zI-Ggj"/>
+                <outlet property="cancelAddButton" destination="PeS-aQ-UYb" id="K4w-hw-tKb"/>
+                <outlet property="cancelUpdateButton" destination="HkR-0k-K8c" id="ShK-PM-fRZ"/>
                 <outlet property="productCodeLabel" destination="ui5-17-sKL" id="QvX-qe-yGZ"/>
                 <outlet property="productNameLabel" destination="Qkb-8N-JMP" id="h42-eL-tMr"/>
                 <outlet property="productPriceLabel" destination="uIY-c1-JtR" id="mBt-BI-rFn"/>
                 <outlet property="quantityField" destination="iPB-a0-BNl" id="h8B-kX-zmf"/>
+                <outlet property="updateItemButton" destination="8E9-cL-p7c" id="gmj-Aa-8gH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -141,6 +145,21 @@
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hkd-jc-O96">
                     <rect key="frame" x="0.0" y="444" width="375" height="74"/>
                     <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PeS-aQ-UYb">
+                            <rect key="frame" x="29" y="14" width="137" height="46"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiF-ls-pWV">
+                                    <rect key="frame" x="0.0" y="0.0" width="137" height="46"/>
+                                    <state key="normal" title="Cancel">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="dismissView:" destination="-1" eventType="touchUpInside" id="Crh-uW-BKu"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.1333333333" green="0.1137254902" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HkR-0k-K8c">
                             <rect key="frame" x="29" y="14" width="137" height="46"/>
                             <subviews>
@@ -150,7 +169,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="dismissView:" destination="-1" eventType="touchUpInside" id="mYs-qr-nCP"/>
+                                        <action selector="dismissViewWithUpdate:" destination="-1" eventType="touchUpInside" id="CaW-bn-32k"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -164,9 +183,27 @@
                                     <state key="normal" title="Add to Cart">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="addProductToCart:" destination="-1" eventType="touchUpInside" id="Xoy-zA-x6d"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.30980392156862746" green="0.2196078431372549" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8E9-cL-p7c">
+                            <rect key="frame" x="209" y="14" width="137" height="46"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdp-FH-ZG6">
+                                    <rect key="frame" x="0.0" y="0.0" width="137" height="46"/>
+                                    <state key="normal" title="Update">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="updateProduct:" destination="-1" eventType="touchUpInside" id="qFN-vl-7Ww"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.30980392159999998" green="0.21960784310000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.95294117647058818" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>

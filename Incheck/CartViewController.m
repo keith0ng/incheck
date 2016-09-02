@@ -12,26 +12,25 @@
 #import "ProductModel.h"
 
 @interface CartViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, strong) NSMutableArray *cartItemsArray;
+
 @end
 
 @implementation CartViewController
 
+- (void)awakeFromNib {
+    self.cartItemsArray = [NSMutableArray array];
+}
 - (void)viewDidLoad {
+    [super viewDidLoad];
     self.cartTableView.delegate = self;
     self.cartTableView.dataSource = self;
-    
-    NSDictionary *products = @{@"name": @"ridges",
-                               @"barcode": @"4800194115421",
-                               @"category": @"Chips",
-                               @"price": @"25"};
-    
-    ProductModel *productModel = [[ProductModel alloc] initWithDictionary:products];
-    self.cartItemsArray = [NSMutableArray array];
-    
-    [self.cartItemsArray addObject:productModel];
-    
-    [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.cartTableView reloadData];
+    self.totalItemsLabel.text = [NSString stringWithFormat:@"Items: %ld", self.totalItems];
+    self.totalAmountLabel.text = [NSString stringWithFormat:@"Amount: %.2f", self.totalAmount];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,10 +38,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ProductModel *model = [self.cartItemsArray objectAtIndex:indexPath.row];
+    ProductModel *productModel = [self.cartItemsArray objectAtIndex:indexPath.row];
     ScannedProductViewController *scannedView = [[ScannedProductViewController alloc] init];
-    [scannedView initWithProductModel:model];
-//    scannedView.productModel = [self.cartItemsArray objectAtIndex:indexPath.row];
+    [scannedView setupForCart:productModel];
+    
     [self presentViewController:scannedView animated:YES completion:nil];
 }
 

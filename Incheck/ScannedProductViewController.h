@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *productPriceLabel;
 @property (weak, nonatomic) IBOutlet UITextField *quantityField;
 @property (nonatomic, strong) ProductModel *productModel;
-
-- (void)initWithProductModel:(ProductModel *)productModel;
+- (void)setupForScanner:(ProductModel *)productModel;
+- (void)setupForCart:(ProductModel *)productModel;
 
 @end
