@@ -10,6 +10,7 @@
 #import "CartCell.h"
 #import "ScannedProductViewController.h"
 #import "ProductModel.h"
+#import "ICAPIRequestManager.h"
 
 @interface CartViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -31,10 +32,6 @@
     [self.cartTableView reloadData];
     self.totalItemsLabel.text = [NSString stringWithFormat:@"Items: %ld", self.totalItems];
     self.totalAmountLabel.text = [NSString stringWithFormat:@"Amount: %.2f", self.totalAmount];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,6 +64,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 65;
+}
+
+- (IBAction)checkoutButtonAction:(id)sender {
+    
+    ICAPIRequestManager *manager = [ICAPIRequestManager sharedManager];
+    [manager apiPOSTTransactionRequestWithPaymentId:@"123812" items:self.cartItemsArray totalAmount:self.totalAmount finsihedBlock:^(NSDictionary *returnParameters, NSError *error)
+    {
+        if (returnParameters)
+        {
+            NSLog(@"Return %@", returnParameters);
+        }
+        else
+        {
+            NSLog(@"Error %@", error);
+        }
+    }];
 }
 
 @end
