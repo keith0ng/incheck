@@ -26,6 +26,7 @@
 		199CB59D1D79FF0F001D3AD8 /* ICUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CB5991D79FF0F001D3AD8 /* ICUserModel.m */; };
 		199CB59E1D79FF0F001D3AD8 /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CB59B1D79FF0F001D3AD8 /* ProductModel.m */; };
 		199CB5A11D7A0075001D3AD8 /* ICAPIRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CB5A01D7A0075001D3AD8 /* ICAPIRequestManager.m */; };
+		199CB5A41D7A41D1001D3AD8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CB5A31D7A41D1001D3AD8 /* RegisterViewController.m */; };
 		880B0C83B11F4C2FE81B4040 /* libPods-Incheck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F04F50A243D8606AD77DBE /* libPods-Incheck.a */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,8 @@
 		199CB59B1D79FF0F001D3AD8 /* ProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductModel.m; sourceTree = "<group>"; };
 		199CB59F1D7A0075001D3AD8 /* ICAPIRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICAPIRequestManager.h; sourceTree = "<group>"; };
 		199CB5A01D7A0075001D3AD8 /* ICAPIRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICAPIRequestManager.m; sourceTree = "<group>"; };
+		199CB5A21D7A41D1001D3AD8 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		199CB5A31D7A41D1001D3AD8 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		2124F86C67E04DA2AF2A87A6 /* Pods-Incheck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Incheck.release.xcconfig"; path = "Pods/Target Support Files/Pods-Incheck/Pods-Incheck.release.xcconfig"; sourceTree = "<group>"; };
 		A6F04F50A243D8606AD77DBE /* libPods-Incheck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Incheck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA66828C94CAD2C8907A5966 /* Pods-Incheck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Incheck.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Incheck/Pods-Incheck.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				199CB5891D79CB61001D3AD8 /* CartCell.m */,
 				199CB58A1D79CB61001D3AD8 /* CartCell.xib */,
 				199CB5851D79BF3E001D3AD8 /* CartViewController.h */,
+				199CB5A21D7A41D1001D3AD8 /* RegisterViewController.h */,
+				199CB5A31D7A41D1001D3AD8 /* RegisterViewController.m */,
 				199CB5861D79BF3E001D3AD8 /* CartViewController.m */,
 				199A9D601D79984400C11E8A /* Assets.xcassets */,
 				199A9D621D79984400C11E8A /* LaunchScreen.storyboard */,
@@ -424,6 +429,7 @@
 				199CB59E1D79FF0F001D3AD8 /* ProductModel.m in Sources */,
 				199A9D591D79984400C11E8A /* AppDelegate.m in Sources */,
 				199A9D561D79984400C11E8A /* main.m in Sources */,
+				199CB5A41D7A41D1001D3AD8 /* RegisterViewController.m in Sources */,
 				199CB5871D79BF3E001D3AD8 /* CartViewController.m in Sources */,
 				199CB59C1D79FF0F001D3AD8 /* ICCreditModel.m in Sources */,
 				19884C9C1D79AEEA0057BC69 /* ScannerViewController.m in Sources */,
