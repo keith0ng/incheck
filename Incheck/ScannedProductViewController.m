@@ -8,7 +8,7 @@
 
 #import "ScannedProductViewController.h"
 
-@interface ScannedProductViewController ()
+@interface ScannedProductViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) NSString *productCode;
 
@@ -17,20 +17,28 @@
 @implementation ScannedProductViewController
 
 - (void)viewDidLoad {
+    self.quantityField.delegate = self;
     [super viewDidLoad];
 }
 
 - (void)initWithProductModel:(ProductModel *)productModel {
+    self.productModel = productModel;
     dispatch_async(dispatch_get_main_queue(), ^{
         self.productNameLabel.text = productModel.productName;
         self.productCodeLabel.text = productModel.productCode;
-        self.productPriceLabel.text = productModel.productPrice;
+        self.productPriceLabel.text = [NSString stringWithFormat:@"%.2f", productModel.productPrice];
     });
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    CGFloat originalPrice = self.productModel.productPrice;
+    NSUInteger multiplier = [textField.text integerValue];
+    CGFloat multipliedPrice = originalPrice * multiplier;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.productPriceLabel.text = [NSString stringWithFormat:@"%.2f", multipliedPrice];
+    });
+    
 }
 
 - (IBAction)dismissView:(id)sender {

@@ -14,8 +14,8 @@
     if (self = [super init]) {
         self.productName = [dictionary objectForKey:@"name"];
         self.productCode = [dictionary objectForKey:@"barcode"];
-        self.productPrice = [dictionary objectForKey:@"price"];
-        self.productQuantity = [dictionary objectForKey:@"quantity"];
+        self.productPrice = [[dictionary objectForKey:@"price"] floatValue];
+//        self.productQuantity = [dictionary objectForKey:@"quantity"];
         self.productCategory = [dictionary objectForKey:@"category"];
     }
     return self;
