@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 typedef void (^RequestFinishedBlock)(NSDictionary *returnParameters, NSError *error);
 
@@ -14,5 +15,9 @@ typedef void (^RequestFinishedBlock)(NSDictionary *returnParameters, NSError *er
 
 + (ICAPIRequestManager *)sharedManager;
 - (void)apiGETProductListRequestWithFinishedBlock:(RequestFinishedBlock)finishedBlock;
+- (void)apiPOSTTransactionRequestWithPaymentId:(NSString *)paymentId
+                                         items:(NSArray *)items
+                                   totalAmount:(CGFloat)totalAmount
+                                 finsihedBlock:(RequestFinishedBlock)finishedBlock;
 
 @end
