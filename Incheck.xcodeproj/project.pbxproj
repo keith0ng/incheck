@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19884C9C1D79AEEA0057BC69 /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19884C9B1D79AEEA0057BC69 /* ScannerViewController.m */; };
 		199A9D561D79984400C11E8A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 199A9D551D79984400C11E8A /* main.m */; };
 		199A9D591D79984400C11E8A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 199A9D581D79984400C11E8A /* AppDelegate.m */; };
 		199A9D5C1D79984400C11E8A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 199A9D5B1D79984400C11E8A /* ViewController.m */; };
@@ -15,6 +16,11 @@
 		199A9D641D79984400C11E8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 199A9D621D79984400C11E8A /* LaunchScreen.storyboard */; };
 		199A9D6F1D79984400C11E8A /* IncheckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 199A9D6E1D79984400C11E8A /* IncheckTests.m */; };
 		199A9D7A1D79984400C11E8A /* IncheckUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 199A9D791D79984400C11E8A /* IncheckUITests.m */; };
+		199CB5831D79B502001D3AD8 /* ScannedProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CB5811D79B502001D3AD8 /* ScannedProductViewController.m */; };
+		199CB5841D79B502001D3AD8 /* ScannedProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 199CB5821D79B502001D3AD8 /* ScannedProductViewController.xib */; };
+		199CB5871D79BF3E001D3AD8 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CB5861D79BF3E001D3AD8 /* CartViewController.m */; };
+		199CB58B1D79CB61001D3AD8 /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CB5891D79CB61001D3AD8 /* CartCell.m */; };
+		199CB58C1D79CB61001D3AD8 /* CartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 199CB58A1D79CB61001D3AD8 /* CartCell.xib */; };
 		880B0C83B11F4C2FE81B4040 /* libPods-Incheck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F04F50A243D8606AD77DBE /* libPods-Incheck.a */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19884C9A1D79AEEA0057BC69 /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
+		19884C9B1D79AEEA0057BC69 /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
 		199A9D511D79984400C11E8A /* Incheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Incheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		199A9D551D79984400C11E8A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		199A9D571D79984400C11E8A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,6 +60,14 @@
 		199A9D751D79984400C11E8A /* IncheckUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IncheckUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		199A9D791D79984400C11E8A /* IncheckUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IncheckUITests.m; sourceTree = "<group>"; };
 		199A9D7B1D79984400C11E8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		199CB5801D79B502001D3AD8 /* ScannedProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannedProductViewController.h; sourceTree = "<group>"; };
+		199CB5811D79B502001D3AD8 /* ScannedProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannedProductViewController.m; sourceTree = "<group>"; };
+		199CB5821D79B502001D3AD8 /* ScannedProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScannedProductViewController.xib; sourceTree = "<group>"; };
+		199CB5851D79BF3E001D3AD8 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
+		199CB5861D79BF3E001D3AD8 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
+		199CB5881D79CB61001D3AD8 /* CartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartCell.h; sourceTree = "<group>"; };
+		199CB5891D79CB61001D3AD8 /* CartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartCell.m; sourceTree = "<group>"; };
+		199CB58A1D79CB61001D3AD8 /* CartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CartCell.xib; sourceTree = "<group>"; };
 		2124F86C67E04DA2AF2A87A6 /* Pods-Incheck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Incheck.release.xcconfig"; path = "Pods/Target Support Files/Pods-Incheck/Pods-Incheck.release.xcconfig"; sourceTree = "<group>"; };
 		A6F04F50A243D8606AD77DBE /* libPods-Incheck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Incheck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA66828C94CAD2C8907A5966 /* Pods-Incheck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Incheck.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Incheck/Pods-Incheck.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,7 +128,17 @@
 				199A9D581D79984400C11E8A /* AppDelegate.m */,
 				199A9D5A1D79984400C11E8A /* ViewController.h */,
 				199A9D5B1D79984400C11E8A /* ViewController.m */,
+				19884C9A1D79AEEA0057BC69 /* ScannerViewController.h */,
+				19884C9B1D79AEEA0057BC69 /* ScannerViewController.m */,
+				199CB5801D79B502001D3AD8 /* ScannedProductViewController.h */,
+				199CB5811D79B502001D3AD8 /* ScannedProductViewController.m */,
+				199CB5821D79B502001D3AD8 /* ScannedProductViewController.xib */,
 				199A9D5D1D79984400C11E8A /* Main.storyboard */,
+				199CB5881D79CB61001D3AD8 /* CartCell.h */,
+				199CB5891D79CB61001D3AD8 /* CartCell.m */,
+				199CB58A1D79CB61001D3AD8 /* CartCell.xib */,
+				199CB5851D79BF3E001D3AD8 /* CartViewController.h */,
+				199CB5861D79BF3E001D3AD8 /* CartViewController.m */,
 				199A9D601D79984400C11E8A /* Assets.xcassets */,
 				199A9D621D79984400C11E8A /* LaunchScreen.storyboard */,
 				199A9D651D79984400C11E8A /* Info.plist */,
@@ -234,6 +260,7 @@
 				TargetAttributes = {
 					199A9D501D79984400C11E8A = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = UGC2S44X5B;
 					};
 					199A9D691D79984400C11E8A = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -271,7 +298,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				199A9D641D79984400C11E8A /* LaunchScreen.storyboard in Resources */,
+				199CB58C1D79CB61001D3AD8 /* CartCell.xib in Resources */,
 				199A9D611D79984400C11E8A /* Assets.xcassets in Resources */,
+				199CB5841D79B502001D3AD8 /* ScannedProductViewController.xib in Resources */,
 				199A9D5F1D79984400C11E8A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,8 +375,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				199A9D5C1D79984400C11E8A /* ViewController.m in Sources */,
+				199CB5831D79B502001D3AD8 /* ScannedProductViewController.m in Sources */,
+				199CB58B1D79CB61001D3AD8 /* CartCell.m in Sources */,
 				199A9D591D79984400C11E8A /* AppDelegate.m in Sources */,
 				199A9D561D79984400C11E8A /* main.m in Sources */,
+				199CB5871D79BF3E001D3AD8 /* CartViewController.m in Sources */,
+				19884C9C1D79AEEA0057BC69 /* ScannerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,10 +522,14 @@
 			baseConfigurationReference = BA66828C94CAD2C8907A5966 /* Pods-Incheck.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Incheck/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kkb.Incheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -501,10 +538,14 @@
 			baseConfigurationReference = 2124F86C67E04DA2AF2A87A6 /* Pods-Incheck.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Incheck/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kkb.Incheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

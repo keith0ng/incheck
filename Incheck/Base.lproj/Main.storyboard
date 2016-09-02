@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Cart-->
+        <!--Cart View Controller-->
         <scene sceneID="cmg-Bs-dby">
             <objects>
-                <viewController id="1BH-Rs-tAy" sceneMemberID="viewController">
+                <viewController id="1BH-Rs-tAy" customClass="CartViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dEs-e0-bc2"/>
                         <viewControllerLayoutGuide type="bottom" id="73h-gJ-53Q"/>
@@ -16,15 +16,61 @@
                     <view key="view" contentMode="scaleToFill" id="RFw-MU-bPU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zqS-mQ-Jn4">
+                                <rect key="frame" x="0.0" y="64" width="375" height="510"/>
+                                <color key="backgroundColor" red="1" green="0.95294117647058818" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" white="0.66666666669999997" alpha="0.50458924459999999" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <color key="sectionIndexBackgroundColor" red="1" green="0.95294117647058818" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="1" green="0.95294117647058818" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UF2-4N-QBa">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="0.88627450980392153" green="0.81568627450980391" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Cart" id="kl3-DX-S2m"/>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ATF-R3-NXb">
+                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSm-UB-XLM">
+                                        <rect key="frame" x="8" y="13" width="84" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpZ-AC-Ubq">
+                                        <rect key="frame" x="119" y="13" width="84" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pun-6g-y2c">
+                                        <rect key="frame" x="301" y="10" width="66" height="30"/>
+                                        <state key="normal" title="Checkout"/>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NYh-0z-xoz">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.5045892446319018" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.8666666666666667" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Cart" id="E7s-dR-9Oe"/>
+                    <tabBarItem key="tabBarItem" systemItem="downloads" id="E7s-dR-9Oe"/>
+                    <connections>
+                        <outlet property="cartTableView" destination="zqS-mQ-Jn4" id="RMA-Fy-ib4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OeR-9l-Jnb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="473.5" y="446.5"/>
         </scene>
-        <!--Paymaya-->
+        <!--View Controller-->
         <scene sceneID="GyT-sz-Q2y">
             <objects>
                 <viewController id="ajp-LX-NE6" sceneMemberID="viewController">
@@ -37,17 +83,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Paymaya" id="raD-c8-wyp"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="raD-c8-wyp"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y7P-cj-Ik0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-14.5" y="801.5"/>
         </scene>
-        <!--Scanner-->
+        <!--Scanner View Controller-->
         <scene sceneID="lzj-bg-FMw">
             <objects>
-                <viewController id="uKq-wt-Mfa" sceneMemberID="viewController">
+                <viewController id="uKq-wt-Mfa" customClass="ScannerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5mb-a2-XuZ"/>
                         <viewControllerLayoutGuide type="bottom" id="fOT-Tc-1o2"/>
@@ -55,13 +101,29 @@
                     <view key="view" contentMode="scaleToFill" id="A6Y-0r-vxJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EAB-0l-gA8">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NaI-po-Nfj">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="0.88627450980392153" green="0.81568627450980391" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Scanner" id="lUq-8c-tZ2"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Scanner" id="GPG-fm-PZJ"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="GPG-fm-PZJ"/>
+                    <connections>
+                        <outlet property="scannerView" destination="EAB-0l-gA8" id="B9h-4i-h2p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RrM-a0-ZRI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="474" y="-302"/>
+            <point key="canvasLocation" x="473.5" y="-302.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tPY-fJ-pZB">
@@ -72,6 +134,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.88627450980392153" green="0.81568627450980391" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="uKq-wt-Mfa" kind="relationship" relationship="viewControllers" id="juD-OF-kfV"/>
