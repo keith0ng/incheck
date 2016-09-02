@@ -33,7 +33,7 @@
                 
                 
                 ScannedProductViewController *scannedView = [[ScannedProductViewController alloc] init];
-                [scannedView initWithProduct:code.stringValue];
+//                [scannedView initWithProductModel:code.stringValue];
                 [self presentViewController:scannedView animated:YES completion:nil];
                 
             }];

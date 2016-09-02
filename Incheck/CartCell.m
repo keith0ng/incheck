@@ -10,9 +10,13 @@
 
 @implementation CartCell
 
-+ (UITableViewCell *)loadCell {
++ (CartCell *)loadCell {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CartCell" owner:self options:nil];
-    return (UITableViewCell *)[nib objectAtIndex:0];
+    return (CartCell *)[nib objectAtIndex:0];
+}
+
+- (void)setupCell {
+    self.productNameLabel.text = self.productModel.productName;
 }
 
 - (void)awakeFromNib {
