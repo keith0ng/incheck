@@ -20,11 +20,11 @@
     [super viewDidLoad];
 }
 
-- (void)initWithProduct:(NSString *)productString {
-
-    self.productCode = productString;
+- (void)initWithProductModel:(ProductModel *)productModel {
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.productCodeLabel.text = self.productCode;
+        self.productNameLabel.text = productModel.productName;
+        self.productCodeLabel.text = productModel.productCode;
+        self.productPriceLabel.text = productModel.productPrice;
     });
 }
 

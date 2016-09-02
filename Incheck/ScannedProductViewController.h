@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ProductModel.h"
 @interface ScannedProductViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *productNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *productCodeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *productPriceLabel;
 @property (weak, nonatomic) IBOutlet UITextField *quantityField;
+@property (nonatomic, strong) ProductModel *productModel;
 
-- (void)initWithProduct:(NSString *)productString;
+- (void)initWithProductModel:(ProductModel *)productModel;
 
 @end

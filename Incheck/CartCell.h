@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductModel.h"
 
 @interface CartCell : UITableViewCell
-+ (UITableViewCell *)loadCell;
+@property (weak, nonatomic) IBOutlet UILabel *productNameLabel;
+@property (nonatomic, strong) ProductModel *productModel;
++ (CartCell *)loadCell;
+- (void)setupCell;
 @end
