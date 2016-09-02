@@ -9,16 +9,44 @@
 #import "ScannerViewController.h"
 #import "ScannedProductViewController.h"
 #import "MTBBarcodeScanner.h"
+#import "ICAPIRequestManager.h"
+#import "ProductModel.h"
 
 @interface ScannerViewController ()
+
 @property (strong, nonatomic) IBOutlet UIView *scannerView;
+@property (strong, nonatomic) NSMutableArray *productsArray;
 
 @end
 
 @implementation ScannerViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    self.productsArray = [NSMutableArray array];
+    
+    ICAPIRequestManager *manager = [ICAPIRequestManager sharedManager];
+    [manager apiGETProductListRequestWithFinishedBlock:^(NSDictionary *returnParameters, NSError *error)
+     {
+         if (returnParameters)
+         {
+//             NSLog(@"Return %@", returnParameters);
+             NSArray *products = returnParameters;
+             
+             for (NSDictionary *productDictionary in products)
+             {
+                 ProductModel *product = [[ProductModel alloc] initWithDictionary:productDictionary];
+                 [self.productsArray addObject:product];
+             }
+             
+             NSLog(@"Products %@", self.productsArray);
+         }
+         else
+         {
+             NSLog(@"Error %@", error);
+         }
+    }];
     
     MTBBarcodeScanner *scanner = [[MTBBarcodeScanner alloc] initWithPreviewView:self.scannerView];
     [scanner setAllowTapToFocus:YES];    
@@ -31,11 +59,15 @@
                 [scanner stopScanning];
                 NSLog(@"Found code: %@", code.stringValue);
                 
-                
-                ScannedProductViewController *scannedView = [[ScannedProductViewController alloc] init];
-//                [scannedView initWithProductModel:code.stringValue];
-                [self presentViewController:scannedView animated:YES completion:nil];
-                
+                for (ProductModel *product in self.productsArray)
+                {
+                    if ([product.productCode isEqualToString:code.stringValue])
+                    {
+                        ScannedProductViewController *scannedView = [[ScannedProductViewController alloc] init];
+                        [scannedView initWithProductModel:product];
+                        [self presentViewController:scannedView animated:YES completion:nil];
+                    }
+                }
             }];
             
         } else {
