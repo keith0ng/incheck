@@ -15,7 +15,7 @@
 
 static NSString *rootURL = @"http://10.3.20.50:5000";
 static NSString *productListURL = @"/product/list";
-static NSString *postTransactionURL = @"transaction/create";
+static NSString *postTransactionURL = @"/transaction/create";
 
 static ICAPIRequestManager* sharedManager = nil;
 
