@@ -11,11 +11,13 @@
 #import "MTBBarcodeScanner.h"
 #import "ICAPIRequestManager.h"
 #import "ProductModel.h"
-
+#import "CartViewController.h"
 @interface ScannerViewController ()
 
+@property (strong, nonatomic) MTBBarcodeScanner *barcodeScanner;
 @property (strong, nonatomic) IBOutlet UIView *scannerView;
 @property (strong, nonatomic) NSMutableArray *productsArray;
+//@property (strong, nonatomic)
 
 @end
 
@@ -48,15 +50,23 @@
          }
     }];
     
-    MTBBarcodeScanner *scanner = [[MTBBarcodeScanner alloc] initWithPreviewView:self.scannerView];
-    [scanner setAllowTapToFocus:YES];    
+    self.barcodeScanner = [[MTBBarcodeScanner alloc] initWithPreviewView:self.scannerView];
+    [self.barcodeScanner setAllowTapToFocus:YES];
+//    [self restartScanner];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self restartScanner];
+}
+
+- (void)restartScanner {
     [MTBBarcodeScanner requestCameraPermissionWithSuccess:^(BOOL success) {
         if (success) {
-            
-            [scanner startScanningWithResultBlock:^(NSArray *codes) {
+            [self.barcodeScanner startScanningWithResultBlock:^(NSArray *codes) {
                 AVMetadataMachineReadableCodeObject *code = [codes firstObject];
-                [scanner stopScanning];
+                [self.barcodeScanner stopScanning];
                 NSLog(@"Found code: %@", code.stringValue);
                 
                 for (ProductModel *product in self.productsArray)
@@ -64,7 +74,20 @@
                     if ([product.productCode isEqualToString:code.stringValue])
                     {
                         ScannedProductViewController *scannedView = [[ScannedProductViewController alloc] init];
-                        [scannedView initWithProductModel:product];
+                        
+                        UITabBarController *parentTabBarController = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+                        CartViewController *cartViewController = [[parentTabBarController viewControllers] objectAtIndex:1];
+
+                        if (![cartViewController.cartItemsArray containsObject:product])
+                        {
+                            [scannedView setupForScanner:product];
+                        }
+                        else
+                        {
+                            [scannedView setupForCart:product];
+                        }
+                        
+                        
                         [self presentViewController:scannedView animated:YES completion:nil];
                     }
                 }
@@ -74,6 +97,7 @@
             // The user denied access to the camera
         }
     }];
+
 }
 
 - (void)didReceiveMemoryWarning {
