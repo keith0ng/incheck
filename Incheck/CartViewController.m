@@ -8,6 +8,7 @@
 
 #import "CartViewController.h"
 #import "CartCell.h"
+#import "ScannedProductViewController.h"
 
 @interface CartViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -23,6 +24,12 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ScannedProductViewController *scannedView = [[ScannedProductViewController alloc] init];
+    [scannedView initWithProduct:@"1234"];
+    [self presentViewController:scannedView animated:YES completion:nil];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
