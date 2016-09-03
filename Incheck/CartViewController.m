@@ -19,6 +19,8 @@
 
 @interface CartViewController () <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) NSString *transactionId;
+
 @end
 
 @implementation CartViewController
@@ -94,32 +96,12 @@
 
 - (IBAction)checkoutButtonAction:(id)sender
 {
+    if (([self.cartItemsArray count] == 0 || self.cartItemsArray == nil)) {
+        [self showAlertWithTitle:@"Oops!" message:@"Your cart is empty."];
+        return;
+    }
+    
     [self checkoutItems];
-    
-//    if (([self.cartItemsArray count] == 0 || self.cartItemsArray == nil)) {
-//        [self showAlertWithTitle:@"Oops!" message:@"Your cart is empty."];
-//        return;
-//    }
-    
-//    ICAPIRequestManager *manager = [ICAPIRequestManager sharedManager];
-//    [manager apiPOSTTransactionRequestWithPaymentId:@"123812" items:self.cartItemsArray totalAmount:self.totalAmount finsihedBlock:^(NSDictionary *returnParameters, NSError *error)
-//    {
-//        if (returnParameters)
-//        {
-//            NSString *qrUrl = [returnParameters objectForKey:@"url"];
-//            NSString *transactionMessage = [returnParameters objectForKey:@"message"];
-//            QRGenerateViewController *qrGenerator = [[QRGenerateViewController alloc] init];
-//            [qrGenerator setupQRCodeFromString:qrUrl withAdminMessage:transactionMessage];
-//            
-//            [self presentViewController:qrGenerator animated:YES completion:nil];
-//            
-//            NSLog(@"Return %@", returnParameters);
-//        }
-//        else
-//        {
-//            NSLog(@"Error %@", error);
-//        }
-//    }];
 }
 
 - (void)checkoutItems
@@ -131,9 +113,59 @@
      {
          if (returnParameters)
          {
+             self.transactionId = [returnParameters objectForKey:@"checkoutId"];
              CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
              checkoutViewController.checkoutURL = [NSURL URLWithString:[returnParameters objectForKey:@"redirectUrl"]];
              [self presentViewController:checkoutViewController animated:YES completion:nil];
+         }
+     }];
+}
+
+- (void)verifyCheckoutStatus
+{
+    ICPayMayaRequestManager *manager = [ICPayMayaRequestManager sharedManager];
+    
+    [manager getCheckoutDetailsWithId:self.transactionId
+                        finishedBlock:^(NSDictionary *returnParameters, NSError *error)
+    {
+        if (returnParameters)
+        {
+            if ([[returnParameters objectForKey:@"paymentStatus"] isEqualToString:@"PAYMENT_SUCCESS"])
+            {
+                [self postTransactionToServer];
+            }
+            else
+            {
+                NSLog(@"AN Erro Occured, please pay to the cashier instead");
+                [self showAlertWithTitle:@"ERROR!" message:@"Payment unsuccessful. Please proceed to the cashier."];
+            }
+        }
+        else
+        {
+            NSLog(@"Error %@", error);
+        }
+    }];
+}
+
+- (void)postTransactionToServer
+{
+    ICAPIRequestManager *manager = [ICAPIRequestManager sharedManager];
+    [manager apiPOSTTransactionRequestWithPaymentId:self.transactionId items:self.cartItemsArray totalAmount:self.totalAmount finsihedBlock:^(NSDictionary *returnParameters, NSError *error)
+     {
+         if (returnParameters)
+         {
+             NSString *qrUrl = [returnParameters objectForKey:@"url"];
+             NSString *transactionMessage = [returnParameters objectForKey:@"message"];
+             QRGenerateViewController *qrGenerator = [[QRGenerateViewController alloc] init];
+             [qrGenerator setupQRCodeFromString:qrUrl withAdminMessage:transactionMessage];
+             
+             [self presentViewController:qrGenerator animated:YES completion:nil];
+             
+             NSLog(@"Return %@", returnParameters);
+         }
+         else
+         {
+             NSLog(@"Error %@", error);
          }
      }];
 }

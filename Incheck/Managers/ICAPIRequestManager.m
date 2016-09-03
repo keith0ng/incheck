@@ -71,7 +71,7 @@ static ICAPIRequestManager* sharedManager = nil;
         [itemsArray addObject:itemDictionary];
     }
     
-    NSDictionary *requestParameters = @{@"payment_id"   :   @"29813671823",
+    NSDictionary *requestParameters = @{@"payment_id"   :   paymentId,
                                         @"total_price"  :   [NSString stringWithFormat:@"%.2f", totalAmount],
                                         @"items"        :   itemsArray};
     

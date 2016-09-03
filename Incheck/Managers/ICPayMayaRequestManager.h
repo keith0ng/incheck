@@ -32,4 +32,7 @@ typedef void (^RequestFinishedBlock)(NSDictionary *returnParameters, NSError *er
           withTotalAmount:(CGFloat)totalAmount
             finishedBlock:(RequestFinishedBlock)finishedBlock;
 
+- (void)getCheckoutDetailsWithId:(NSString *)checkoutId
+                   finishedBlock:(RequestFinishedBlock)finishedBlock;
+
 @end

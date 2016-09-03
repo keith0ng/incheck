@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) NSString *publicKey;
 @property (nonatomic, strong) NSString *secretKey;
+@property (nonatomic, strong) NSString *checkoutSecret;
 @property (nonatomic, strong) NSString *paymentToken;
 
 @end
@@ -24,7 +25,9 @@
 @implementation ICPayMayaRequestManager
 
 //static NSString *publicAPIKey = @"pk-N6TvoB4GP2kIgNz4OCchCTKYvY5kPQd2HDRSg8rPeQG:";
-static NSString *publicAPIKey = @"pk-iaioBC2pbY6d3BVRSebsJxghSHeJDW4n6navI7tYdrN:";
+static NSString *publicAPIKey = @"pk-8rOz4MQKRxd5OLKBPcR6FIUx4Kay71kB3UrBFDaH172:";
+static NSString *checkoutSecretKey = @"sk-VrEDVetYZ6f4R1w4g0npwLzeBXtksd1smJ5lqk9Yh4y:";
+
 static NSString *secretAPIKey = @"sk-9lRmFTV8BIdxoXWm5liDAlKF0yL4gZzwmDQAmnvxWOF:";
 
 // Customer API
@@ -43,6 +46,7 @@ static NSString *createPaymentURL = @"https://pg-sandbox.paymaya.com/payments/v1
 
 // Checkout API
 static NSString *checkoutURL = @"https://pg-sandbox.paymaya.com/checkout/v1/checkouts";
+static NSString *getCheckoutDetailsURL = @"https://pg-sandbox.paymaya.com/checkout/v1/checkouts/%@";
 
 static ICPayMayaRequestManager* sharedManager = nil;
 
@@ -61,6 +65,9 @@ static ICPayMayaRequestManager* sharedManager = nil;
 {
     NSData *publicAPIData = [publicAPIKey dataUsingEncoding:NSUTF8StringEncoding];
     self.publicKey = [NSString stringWithFormat:@"Basic %@", [publicAPIData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
+    
+    NSData *checkoutSecretData = [checkoutSecretKey dataUsingEncoding:NSUTF8StringEncoding];
+    self.checkoutSecret = [NSString stringWithFormat:@"Basic %@", [checkoutSecretData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
     
     NSData *secretAPIData = [secretAPIKey dataUsingEncoding:NSUTF8StringEncoding];
     self.secretKey = [NSString stringWithFormat:@"Basic %@", [secretAPIData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
@@ -294,7 +301,7 @@ static ICPayMayaRequestManager* sharedManager = nil;
     NSDictionary *totalAmountDictionary = @{@"currency" :   @"PHP",
                                             @"value"    :   [NSString stringWithFormat:@"%.2f", totalAmount]};
     
-    NSDictionary *urlsDictionary = @{@"success": @"http://10.3.20.50:5000/transaction/confirmation/fail",
+    NSDictionary *urlsDictionary = @{@"success": @"http://10.3.20.50:5000/transaction/confirmation/success",
                                      @"fail"    :   @"http://10.3.20.50:5000/transaction/confirmation/fail"};
 
     NSDictionary *requestParameters = @{@"buyer"    :   userDictionary,
@@ -304,6 +311,30 @@ static ICPayMayaRequestManager* sharedManager = nil;
                                         @"redirectUrl"  :   urlsDictionary};
     
     [manager POST:checkoutURL parameters:requestParameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+    {
+        [SVProgressHUD dismiss];
+        finishedBlock(responseObject, nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+    {
+        [SVProgressHUD dismiss];
+        finishedBlock(nil, error);
+    }];
+}
+
+- (void)getCheckoutDetailsWithId:(NSString *)checkoutId
+                   finishedBlock:(RequestFinishedBlock)finishedBlock
+{
+    [SVProgressHUD show];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager.requestSerializer setValue:self.checkoutSecret forHTTPHeaderField:@"Authorization"];
+    
+    NSString *urlPath = [NSString stringWithFormat:getCheckoutDetailsURL, checkoutId];
+    
+    [manager GET:urlPath parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
     {
         [SVProgressHUD dismiss];
         finishedBlock(responseObject, nil);
