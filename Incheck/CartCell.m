@@ -16,7 +16,11 @@
 }
 
 - (void)setupCell {
-    self.productNameLabel.text = self.productModel.productName;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.productNameLabel.text = self.productModel.productName;
+        self.productPriceLabel.text = [NSString stringWithFormat:@"%.2f", self.productModel.totalPrice];
+        self.productQuantityLabel.text = [NSString stringWithFormat:@"x%ld", self.productModel.productQuantity];
+    });
 }
 
 - (void)awakeFromNib {

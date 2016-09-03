@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalItemsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
 
+- (void)clearCart;
+
 @end
