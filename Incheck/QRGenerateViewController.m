@@ -8,6 +8,7 @@
 
 #import "QRGenerateViewController.h"
 #import "UIImage+MDQRCode.h"
+#import "CartViewController.h"
 
 @interface QRGenerateViewController () 
 
@@ -41,7 +42,11 @@
 }
 
 - (IBAction)dismissView:(id)sender {
-    [self removeFromParentViewController];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    UITabBarController *parentTabBarController = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+    CartViewController *cartViewController = [[parentTabBarController viewControllers] objectAtIndex:1];
+    [cartViewController clearCart];
+
 }
 
 @end
