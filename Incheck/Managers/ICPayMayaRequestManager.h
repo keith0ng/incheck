@@ -20,7 +20,8 @@ typedef void (^RequestFinishedBlock)(NSDictionary *returnParameters, NSError *er
 // Customer Methods
 - (void)createPaymayaUserWithUserModel:(ICUserModel *)user
                          finishedBlock:(RequestFinishedBlock)finishedBlock;
-- (void)getCustomerDetailsWithUser:(ICUserModel *)user;
+-(void)getCustomerDetailsWithUser:(ICUserModel *)user
+                    finishedBlock:(RequestFinishedBlock)finishedBlock;
 - (void)updateCustomerDetailsWithUser:(ICUserModel *)user;
 
 // Card Methods

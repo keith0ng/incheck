@@ -98,15 +98,19 @@ static ICPayMayaRequestManager* sharedManager = nil;
     
     [manager POST:createCustomerURL parameters:userDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
     {
+        [SVProgressHUD dismiss];
         finishedBlock(responseObject, nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
     {
+        [SVProgressHUD dismiss];
         finishedBlock(nil, error);
     }];
 }
 
 -(void)getCustomerDetailsWithUser:(ICUserModel *)user
+                    finishedBlock:(RequestFinishedBlock)finishedBlock
 {
+    [SVProgressHUD show];
     NSString *url = [NSString stringWithFormat:@"%@%@", getCustomerURL, user.paymayaId];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -117,10 +121,12 @@ static ICPayMayaRequestManager* sharedManager = nil;
     
     [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
     {
-        NSLog(@"Response %@", responseObject);
+        [SVProgressHUD dismiss];
+        finishedBlock(responseObject, nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
     {
-        NSLog(@"Error %@", error);
+        [SVProgressHUD dismiss];
+        finishedBlock(nil, error);
     }];
 }
 
@@ -288,7 +294,7 @@ static ICPayMayaRequestManager* sharedManager = nil;
     NSDictionary *totalAmountDictionary = @{@"currency" :   @"PHP",
                                             @"value"    :   [NSString stringWithFormat:@"%.2f", totalAmount]};
     
-    NSDictionary *urlsDictionary = @{@"success": @"http://10.3.20.50:5000/transaction/confirmation/success",
+    NSDictionary *urlsDictionary = @{@"success": @"http://10.3.20.50:5000/transaction/confirmation/fail",
                                      @"fail"    :   @"http://10.3.20.50:5000/transaction/confirmation/fail"};
 
     NSDictionary *requestParameters = @{@"buyer"    :   userDictionary,

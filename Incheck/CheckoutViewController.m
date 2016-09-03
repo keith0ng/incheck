@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://10.3.20.50:5000/transaction/confirmation/success"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.checkoutURL];
     [request addValue:@"Basic cGstaWFpb0JDMnBiWTZkM0JWUlNlYnNKeGdoU0hlSkRXNG42bmF2STd0WWRyTjo=" forHTTPHeaderField:@"Authorization"];
     [self.webView loadRequest:request];
 }

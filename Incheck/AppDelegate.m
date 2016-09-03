@@ -10,6 +10,7 @@
 #import "ICAPIRequestManager.h"
 #import "CartViewController.h"
 #import "SVProgressHUD.h"
+#import "ICPayMayaRequestManager.h"
 
 @interface AppDelegate ()
 
@@ -17,10 +18,13 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    self.user = [[ICUserModel alloc] init];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.user.paymayaId = [defaults objectForKey:@"paymayaId"];
+    
     return YES;
 }
 
