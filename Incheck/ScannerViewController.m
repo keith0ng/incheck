@@ -62,6 +62,7 @@
 }
 
 - (void)restartScanner {
+    __block BOOL didFoundItem = NO;
     [MTBBarcodeScanner requestCameraPermissionWithSuccess:^(BOOL success) {
         if (success) {
             [self.barcodeScanner startScanningWithResultBlock:^(NSArray *codes) {
@@ -73,6 +74,7 @@
                 {
                     if ([product.productCode isEqualToString:code.stringValue])
                     {
+                        didFoundItem = YES;
                         ScannedProductViewController *scannedView = [[ScannedProductViewController alloc] init];
                         
                         UITabBarController *parentTabBarController = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
@@ -91,6 +93,20 @@
                         [self presentViewController:scannedView animated:YES completion:nil];
                     }
                 }
+                
+                if (didFoundItem == NO)
+                {
+//                    [self showAlertWithTitle:@"Error!" message:@"Item not found!"];
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ooops!" message:@"Item not found!" preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self restartScanner];
+                    }];
+                    
+                    [alertController addAction:okayAction];
+                    
+                    [self presentViewController:alertController animated:YES completion:nil];
+                }
             }];
             
         } else {
@@ -100,8 +116,13 @@
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)showAlertWithTitle:(NSString *)titleString message:(NSString *)messageString {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:titleString
+                                                    message:messageString
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

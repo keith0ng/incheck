@@ -109,6 +109,12 @@
     ICPayMayaRequestManager *manager = [ICPayMayaRequestManager sharedManager];
     ICUserModel *user = ((AppDelegate *)[UIApplication sharedApplication].delegate).user;
     
+    if (user.paymayaId == nil)
+    {
+        [self showAlertWithTitle:@"Error!" message:@"Add an account first!"];
+        return;
+    }
+    
     [manager checkoutWithItems:self.cartItemsArray forUser:user withTotalAmount:self.totalAmount finishedBlock:^(NSDictionary *returnParameters, NSError *error)
      {
          if (returnParameters)
@@ -137,7 +143,7 @@
             else
             {
                 NSLog(@"AN Erro Occured, please pay to the cashier instead");
-                [self showAlertWithTitle:@"ERROR!" message:@"Payment unsuccessful. Please proceed to the cashier."];
+                [self showAlertWithTitle:@"Oops!" message:@"Payment unsuccessful. Please proceed to the cashier."];
             }
         }
         else
@@ -187,6 +193,8 @@
         self.totalAmountLabel.text = [NSString stringWithFormat:@"Amount: %.2f", self.totalAmount];
         [self.cartTableView reloadData];
     });
+    
+    self.cartItemsArray = [NSMutableArray array];
 }
 
 - (void)showAlertWithTitle:(NSString *)titleString message:(NSString *)messageString {

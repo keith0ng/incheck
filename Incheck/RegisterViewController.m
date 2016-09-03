@@ -14,6 +14,7 @@
 @interface RegisterViewController ()
 
 @property (nonatomic, strong) ICUserModel *user;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
 @end
 
@@ -37,10 +38,12 @@
                  ((AppDelegate *)[UIApplication sharedApplication].delegate).user = user;
                  self.user = user;
                  [self setTextFieldValues];
+                 [self.registerButton setTitle:@"Update" forState:UIControlStateNormal];
              }
              else
              {
                  NSLog(@"Error %@", error);
+                 [self showAlertWithTitle:@"ERROR!" message:@"An error occured"];
              }
          }];
     }
@@ -104,8 +107,18 @@
         else
         {
             NSLog(@"Error %@", error);
+            [self showAlertWithTitle:@"ERROR!" message:@"An error occured"];
         }
     }];
+}
+
+- (void)showAlertWithTitle:(NSString *)titleString message:(NSString *)messageString {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:titleString
+                                                    message:messageString
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end
