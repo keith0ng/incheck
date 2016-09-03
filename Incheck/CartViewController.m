@@ -11,6 +11,7 @@
 #import "ScannedProductViewController.h"
 #import "ProductModel.h"
 #import "ICAPIRequestManager.h"
+#import "QRGenerateViewController.h"
 
 @interface CartViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -73,6 +74,13 @@
     {
         if (returnParameters)
         {
+            NSString *qrUrl = [returnParameters objectForKey:@"url"];
+            NSString *transactionMessage = [returnParameters objectForKey:@"message"];
+            QRGenerateViewController *qrGenerator = [[QRGenerateViewController alloc] init];
+            [qrGenerator setupQRCodeFromString:qrUrl withAdminMessage:transactionMessage];
+            
+            [self presentViewController:qrGenerator animated:YES completion:nil];
+            
             NSLog(@"Return %@", returnParameters);
         }
         else

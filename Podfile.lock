@@ -14,18 +14,21 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - BEMCheckBox (1.2.1)
   - IQKeyboardManager (4.0.4)
   - MTBBarcodeScanner (2.0.3)
   - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
   - AFNetworking (= 3.1.0)
+  - BEMCheckBox (= 1.2.1)
   - IQKeyboardManager (= 4.0.4)
   - MTBBarcodeScanner (= 2.0.3)
   - SVProgressHUD (= 2.0.3)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   IQKeyboardManager: 4a6f83b540283c2645aaeba2bd8dc0f09b5c77f8
   MTBBarcodeScanner: a05f36125ff8ea48011b84715c5faa10838ddb80
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4

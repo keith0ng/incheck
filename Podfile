@@ -9,5 +9,6 @@ pod 'AFNetworking', '3.1.0'
 pod 'MTBBarcodeScanner', '2.0.3'
 pod 'IQKeyboardManager', '4.0.4'
 pod 'SVProgressHUD', '2.0.3'
+pod 'BEMCheckBox', '1.2.1'
 
 end
