@@ -18,6 +18,7 @@
         self.productPerPiece = [[dictionary objectForKey:@"price"] floatValue];
         self.productQuantity = 1;
         self.productCategory = [dictionary objectForKey:@"category"];
+        self.productDescription = [dictionary objectForKey:@"description"];
     }
     return self;
 }

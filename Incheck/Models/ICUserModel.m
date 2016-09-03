@@ -11,8 +11,9 @@
 @implementation ICUserModel
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
-    if (self = [super init]){
-        self.paymayaId = [dictionary objectForKey:@""];
+    if (self = [super init])
+    {
+        self.paymayaId = [dictionary objectForKey:@"id"];
         self.firstName = [dictionary objectForKey:@"firstName"];
         self.lastName = [dictionary objectForKey:@"lastName"];
         self.middleName = [dictionary objectForKey:@"middleName"];

@@ -25,4 +25,6 @@
 @property (nonatomic, strong) NSString *zipcode;
 @property (nonatomic, strong) NSString *countryCode;
 
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
 @end

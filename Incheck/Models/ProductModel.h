@@ -17,6 +17,7 @@
 @property (nonatomic, assign) CGFloat   productPerPiece;
 @property (nonatomic, strong) NSString *productCategory;
 @property (nonatomic, assign) NSUInteger productQuantity;
+@property (nonatomic, strong) NSString *productDescription;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
