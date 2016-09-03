@@ -7,6 +7,7 @@
 //
 
 #import "CheckoutViewController.h"
+#import "CartViewController.h"
 
 @interface CheckoutViewController ()
 
@@ -21,9 +22,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://10.3.20.50:5000/transaction/confirmation/success"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.checkoutURL];
     [request addValue:@"Basic cGstaWFpb0JDMnBiWTZkM0JWUlNlYnNKeGdoU0hlSkRXNG42bmF2STd0WWRyTjo=" forHTTPHeaderField:@"Authorization"];
     [self.webView loadRequest:request];
+}
+
+- (IBAction)cancelButtonAction:(id)sender
+{
+    UITabBarController *parentTabBarController = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+    CartViewController *cartViewController = [[parentTabBarController viewControllers] objectAtIndex:1];
+    [cartViewController verifyCheckoutStatus];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

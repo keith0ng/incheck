@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
 
 - (void)clearCart;
+- (void)verifyCheckoutStatus;
 
 @end
