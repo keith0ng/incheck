@@ -10,6 +10,8 @@
 #import "ICUserModel.h"
 #import "ICCreditModel.h"
 #import "AFNetworking.h"
+#import "SVProgressHUD.h"
+#import "ProductModel.h"
 
 @interface ICPayMayaRequestManager()
 
@@ -21,7 +23,8 @@
 
 @implementation ICPayMayaRequestManager
 
-static NSString *publicAPIKey = @"pk-N6TvoB4GP2kIgNz4OCchCTKYvY5kPQd2HDRSg8rPeQG:";
+//static NSString *publicAPIKey = @"pk-N6TvoB4GP2kIgNz4OCchCTKYvY5kPQd2HDRSg8rPeQG:";
+static NSString *publicAPIKey = @"pk-iaioBC2pbY6d3BVRSebsJxghSHeJDW4n6navI7tYdrN:";
 static NSString *secretAPIKey = @"sk-9lRmFTV8BIdxoXWm5liDAlKF0yL4gZzwmDQAmnvxWOF:";
 
 // Customer API
@@ -37,6 +40,9 @@ static NSString *updateCardDetailsURL = @"https://pg-sandbox.paymaya.com/payment
 
 // Payment API
 static NSString *createPaymentURL = @"https://pg-sandbox.paymaya.com/payments/v1/customers/%@/cards/%@/payments";
+
+// Checkout API
+static NSString *checkoutURL = @"https://pg-sandbox.paymaya.com/checkout/v1/checkouts";
 
 static ICPayMayaRequestManager* sharedManager = nil;
 
@@ -61,7 +67,9 @@ static ICPayMayaRequestManager* sharedManager = nil;
 }
 
 - (void)createPaymayaUserWithUserModel:(ICUserModel *)user
+                         finishedBlock:(RequestFinishedBlock)finishedBlock
 {
+    [SVProgressHUD show];
     NSDictionary *userDictionary = @{@"firstName"   :   user.firstName,
                                      @"lastName"    :   user.lastName,
                                      @"middleName"  :   user.middleName,
@@ -90,10 +98,10 @@ static ICPayMayaRequestManager* sharedManager = nil;
     
     [manager POST:createCustomerURL parameters:userDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
     {
-        NSLog(@"%@", responseObject);
+        finishedBlock(responseObject, nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
     {
-        NSLog(@"%@", error);
+        finishedBlock(nil, error);
     }];
 }
 
@@ -227,6 +235,76 @@ static ICPayMayaRequestManager* sharedManager = nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
     {
         NSLog(@"Error %@", error);
+    }];
+}
+
+- (void)checkoutWithItems:(NSArray *)items
+                  forUser:(ICUserModel *)user
+          withTotalAmount:(CGFloat)totalAmount
+            finishedBlock:(RequestFinishedBlock)finishedBlock
+{
+    [SVProgressHUD show];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager.requestSerializer setValue:self.publicKey forHTTPHeaderField:@"Authorization"];
+    
+    NSMutableArray *itemsArray = [NSMutableArray array];
+    
+    for (ProductModel *product in items)
+    {
+        NSDictionary *itemDictionary = @{@"name"        :   product.productName,
+                                         @"code"        :   product.productCode,
+                                         @"description" :   product.productDescription,
+                                         @"quantity"    :   [NSString stringWithFormat:@"%ld", product.productQuantity],
+                                         @"amount"      :   @{
+                                                 @"value"    : [NSString stringWithFormat:@"%.2f", product.productPerPiece]
+                                                            },
+                                         @"totalAmount" :   @{
+                                                 @"value"   : [NSString stringWithFormat:@"%.2f", product.totalPrice]}};
+        
+        [itemsArray addObject:itemDictionary];
+    }
+    
+    NSDictionary *userDictionary = @{@"firstName"   :   user.firstName,
+                                     @"lastName"    :   user.lastName,
+                                     @"middleName"  :   user.middleName,
+                                     @"contact"     :   @{
+                                             @"phone"    :   user.phone,
+                                             @"email"    :   user.email
+                                             },
+                                     @"billingAddress": @{
+                                             @"line1"    :   user.address1,
+                                             @"line2"    :   user.address2,
+                                             @"city"        :   user.city,
+                                             @"state"       :   user.state,
+                                             @"zipCode"     :   user.zipcode,
+                                             @"countryCode" :   user.countryCode
+                                             }
+                                     };
+    
+    NSDictionary *totalAmountDictionary = @{@"currency" :   @"PHP",
+                                            @"value"    :   [NSString stringWithFormat:@"%.2f", totalAmount]};
+    
+    NSDictionary *urlsDictionary = @{@"success": @"http://10.3.20.50:5000/transaction/confirmation/success",
+                                     @"fail"    :   @"http://10.3.20.50:5000/transaction/confirmation/fail"};
+
+    NSDictionary *requestParameters = @{@"buyer"    :   userDictionary,
+                                        @"items"    :   itemsArray,
+                                        @"totalAmount"  :   totalAmountDictionary,
+                                        @"requestReferenceNumber"   :   @"1234567890",
+                                        @"redirectUrl"  :   urlsDictionary};
+    
+    [manager POST:checkoutURL parameters:requestParameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+    {
+        [SVProgressHUD dismiss];
+        finishedBlock(responseObject, nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+    {
+        [SVProgressHUD dismiss];
+        finishedBlock(nil, error);
     }];
 }
 

@@ -12,6 +12,9 @@
 #import "ProductModel.h"
 #import "ICAPIRequestManager.h"
 #import "QRGenerateViewController.h"
+#import "ICPayMayaRequestManager.h"
+#import "ICUserModel.h"
+#import "CheckoutViewController.h"
 
 @interface CartViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -69,8 +72,39 @@
 
 - (IBAction)checkoutButtonAction:(id)sender {
     
-    ICAPIRequestManager *manager = [ICAPIRequestManager sharedManager];
-    [manager apiPOSTTransactionRequestWithPaymentId:@"123812" items:self.cartItemsArray totalAmount:self.totalAmount finsihedBlock:^(NSDictionary *returnParameters, NSError *error)
+//    ICAPIRequestManager *manager = [ICAPIRequestManager sharedManager];
+//    [manager apiPOSTTransactionRequestWithPaymentId:@"123812" items:self.cartItemsArray totalAmount:self.totalAmount finsihedBlock:^(NSDictionary *returnParameters, NSError *error)
+//    {
+//        if (returnParameters)
+//        {
+//            NSLog(@"Return %@", returnParameters);
+//        }
+//        else
+//        {
+//            NSLog(@"Error %@", error);
+//        }
+//    }];
+    
+    ICUserModel *user = [[ICUserModel alloc] initWithDictionary:@{@"firstName": @"Juan",
+                        @"middleName": @"dela",
+                        @"lastName": @"Cruz",
+                        @"birthday": @"1992-10-06",
+                        @"sex": @"m",
+                        @"contact": @{
+                             @"phone": @"+63(2)1234567890",
+                             @"email": @"paymayabuyer1@gmail.com"
+                         },
+                        @"billingAddress": @{
+                             @"line1": @"9F Robinsons Cybergate 3",
+                             @"line2": @"Pioneer Street",
+                             @"city": @"Mandaluyong City",
+                             @"state": @"Metro Manila",
+                             @"zipCode": @"1002",
+                             @"countryCode": @"PH"
+    }}];
+    ICPayMayaRequestManager *manager = [ICPayMayaRequestManager sharedManager];
+    
+    [manager checkoutWithItems:self.cartItemsArray forUser:user withTotalAmount:self.totalAmount finishedBlock:^(NSDictionary *returnParameters, NSError *error)
     {
         if (returnParameters)
         {
@@ -85,7 +119,9 @@
         }
         else
         {
-            NSLog(@"Error %@", error);
+            CheckoutViewController *checkout = [[CheckoutViewController alloc] init];
+            checkout.checkoutURL = [NSURL URLWithString:[returnParameters objectForKey:@"redirectUrl"]];
+            [self presentViewController:checkout animated:YES completion:nil];
         }
     }];
 }

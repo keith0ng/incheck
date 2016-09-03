@@ -37,6 +37,8 @@
 		199CB59E1D79FF0F001D3AD8 /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CB59B1D79FF0F001D3AD8 /* ProductModel.m */; };
 		199CB5A11D7A0075001D3AD8 /* ICAPIRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CB5A01D7A0075001D3AD8 /* ICAPIRequestManager.m */; };
 		199CB5A41D7A41D1001D3AD8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CB5A31D7A41D1001D3AD8 /* RegisterViewController.m */; };
+		19D438CF1D7A7E0B002AD625 /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D438CD1D7A7E0B002AD625 /* CheckoutViewController.m */; };
+		19D438D01D7A7E0B002AD625 /* CheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D438CE1D7A7E0B002AD625 /* CheckoutViewController.xib */; };
 		880B0C83B11F4C2FE81B4040 /* libPods-Incheck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F04F50A243D8606AD77DBE /* libPods-Incheck.a */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +117,9 @@
 		199CB5A01D7A0075001D3AD8 /* ICAPIRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICAPIRequestManager.m; sourceTree = "<group>"; };
 		199CB5A21D7A41D1001D3AD8 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		199CB5A31D7A41D1001D3AD8 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		19D438CC1D7A7E0B002AD625 /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
+		19D438CD1D7A7E0B002AD625 /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
+		19D438CE1D7A7E0B002AD625 /* CheckoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutViewController.xib; sourceTree = "<group>"; };
 		2124F86C67E04DA2AF2A87A6 /* Pods-Incheck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Incheck.release.xcconfig"; path = "Pods/Target Support Files/Pods-Incheck/Pods-Incheck.release.xcconfig"; sourceTree = "<group>"; };
 		A6F04F50A243D8606AD77DBE /* libPods-Incheck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Incheck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA66828C94CAD2C8907A5966 /* Pods-Incheck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Incheck.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Incheck/Pods-Incheck.debug.xcconfig"; sourceTree = "<group>"; };
@@ -209,6 +214,9 @@
 				199A9D581D79984400C11E8A /* AppDelegate.m */,
 				199A9D5A1D79984400C11E8A /* ViewController.h */,
 				199A9D5B1D79984400C11E8A /* ViewController.m */,
+				19D438CC1D7A7E0B002AD625 /* CheckoutViewController.h */,
+				19D438CD1D7A7E0B002AD625 /* CheckoutViewController.m */,
+				19D438CE1D7A7E0B002AD625 /* CheckoutViewController.xib */,
 				19884C9A1D79AEEA0057BC69 /* ScannerViewController.h */,
 				19884C9B1D79AEEA0057BC69 /* ScannerViewController.m */,
 				199CB5801D79B502001D3AD8 /* ScannedProductViewController.h */,
@@ -413,6 +421,7 @@
 				199A9D611D79984400C11E8A /* Assets.xcassets in Resources */,
 				199CB5841D79B502001D3AD8 /* ScannedProductViewController.xib in Resources */,
 				199A9D5F1D79984400C11E8A /* Main.storyboard in Resources */,
+				19D438D01D7A7E0B002AD625 /* CheckoutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				197BED741D7A509F001FECE8 /* mask.c in Sources */,
+				19D438CF1D7A7E0B002AD625 /* CheckoutViewController.m in Sources */,
 				197BED771D7A509F001FECE8 /* qrspec.c in Sources */,
 				199A9D5C1D79984400C11E8A /* ViewController.m in Sources */,
 				199CB5831D79B502001D3AD8 /* ScannedProductViewController.m in Sources */,

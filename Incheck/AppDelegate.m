@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ICAPIRequestManager.h"
 #import "CartViewController.h"
+#import "SVProgressHUD.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
     return YES;
 }
 
