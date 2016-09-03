@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Cart View Controller-->
+        <!--Cart-->
         <scene sceneID="cmg-Bs-dby">
             <objects>
                 <viewController id="1BH-Rs-tAy" customClass="CartViewController" sceneMemberID="viewController">
@@ -87,7 +87,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="downloads" id="E7s-dR-9Oe"/>
+                    <tabBarItem key="tabBarItem" title="Cart" image="CartIcon.png" selectedImage="CartIcon.png" id="E7s-dR-9Oe"/>
                     <connections>
                         <outlet property="cartTableView" destination="zqS-mQ-Jn4" id="RMA-Fy-ib4"/>
                         <outlet property="totalAmountLabel" destination="LpZ-AC-Ubq" id="53a-fY-SCb"/>
@@ -98,7 +98,7 @@
             </objects>
             <point key="canvasLocation" x="473.5" y="446.5"/>
         </scene>
-        <!--Register View Controller-->
+        <!--Register-->
         <scene sceneID="GyT-sz-Q2y">
             <objects>
                 <viewController id="ajp-LX-NE6" customClass="RegisterViewController" sceneMemberID="viewController">
@@ -254,7 +254,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="raD-c8-wyp"/>
+                    <tabBarItem key="tabBarItem" title="Register" image="RegistrationIcon.png" selectedImage="RegistrationIcon.png" id="raD-c8-wyp"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="address1Field" destination="vCK-Eo-OsN" id="ohv-QV-qvz"/>
@@ -276,7 +276,7 @@
             </objects>
             <point key="canvasLocation" x="-14.5" y="801.5"/>
         </scene>
-        <!--Scanner View Controller-->
+        <!--Scanner-->
         <scene sceneID="lzj-bg-FMw">
             <objects>
                 <viewController id="uKq-wt-Mfa" customClass="ScannerViewController" sceneMemberID="viewController">
@@ -320,7 +320,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="GPG-fm-PZJ"/>
+                    <tabBarItem key="tabBarItem" title="Scanner" image="BarcodeIcon.png" selectedImage="BarcodeIcon.png" id="GPG-fm-PZJ"/>
                     <connections>
                         <outlet property="scannerView" destination="EAB-0l-gA8" id="B9h-4i-h2p"/>
                     </connections>
@@ -351,4 +351,9 @@
             <point key="canvasLocation" x="-14.5" y="26.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BarcodeIcon.png" width="50" height="50"/>
+        <image name="CartIcon.png" width="50" height="50"/>
+        <image name="RegistrationIcon.png" width="50" height="50"/>
+    </resources>
 </document>
