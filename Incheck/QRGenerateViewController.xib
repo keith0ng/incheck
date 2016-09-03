@@ -92,7 +92,7 @@ by the store's designated staff.</string>
                     <color key="backgroundColor" red="0.1333333333" green="0.1137254902" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ain-SE-c9I">
-                    <rect key="frame" x="82" y="327" width="210" height="41"/>
+                    <rect key="frame" x="13" y="327" width="348" height="41"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
