@@ -11,6 +11,8 @@
 
 @interface CartCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *productNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *productQuantityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *productPriceLabel;
 @property (nonatomic, strong) ProductModel *productModel;
 + (CartCell *)loadCell;
 - (void)setupCell;
